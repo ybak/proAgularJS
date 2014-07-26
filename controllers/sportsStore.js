@@ -13,10 +13,14 @@ angular.module("sportsStore")
         $scope.sendOrder = function (shippingDetails) {
             var order = angular.copy(shippingDetails);
             order.products = cart.getProducts();
-            $http.post(orderUrl, order).success(function (error) {
-                $scope.data.orderError = error;
-            }).finally(function () {
-                $location.path("/complete");
-            })
+            $http.post(orderUrl, order)
+                .success(function (data) {
+                    $scope.data.orderId = data.id;
+                    cart.getProducts().length = 0;
+                }).error(function (error) {
+                    $scope.data.orderError = error;
+                }).finally(function () {
+                    $location.path("/complete");
+                })
         };
     });
