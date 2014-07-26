@@ -1,0 +1,8 @@
+prepare test data:
+
+var a = {/data/product.json}
+
+_.each(a, function(item){
+    delete item.id;
+    dpd.products.post(item);
+});
