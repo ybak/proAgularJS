@@ -1,7 +1,14 @@
+install dpd:
+npm install deployd -g
+
+start dpd:
+dpd -p 5500 app.dpd
+
+dpd dashboard:
+http://localhost:5500/dashboard/
+
 prepare test data:
-
 var a = {/data/product.json}
-
 _.each(a, function(item){
     delete item.id;
     dpd.products.post(item);
